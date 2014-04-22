@@ -11,6 +11,11 @@ $(document).ready(function() {
     custom_bubble_chart.toggle_view(view_type);
     return false;
   });
+
+  $('#sidebar_toggle').sidr({
+    name: 'sidr-left',
+    source: '#sidr'
+  });
 });
 
 function addCommas(nStr) {

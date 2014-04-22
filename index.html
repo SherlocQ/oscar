@@ -18,6 +18,7 @@
   <!-- CSS concatenated and minified via ant build script-->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/jquery.sidr.light.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- end CSS-->
 
@@ -25,12 +26,14 @@
 </head>
 
 <body>
-
   <div id="container" class="container">
     <header>
-      <h1>Oscar Winner Visualization</h1>
+      <h1>Oscar Winner Bubbles</h1>
     </header>
     <div id="main" role="main">
+      <button type="button" class="btn btn-default" style="outline:none;">
+        <a href="#sidr"><span id="sidebar_toggle" class="glyphicon glyphicon-align-justify"></span></a>
+      </button>
       <div id="view_selection" class="btn-group">
         <button type="button" class="btn btn-default active" id="all">All Winners</button>
         <button type="button" class="btn btn-default" id="genre">Winners By Genre</button>
@@ -42,18 +45,28 @@
           <span class="sr-only">Toggle Dropdown</span>
         </button>
         <ul class="dropdown-menu" role="menu">
-          <li><a href="#">By Voting</a></li>
-          <li><a href="#">By Grossing</a></li>
+          <li><a href="#">By Voting</a>
+          </li>
+          <li><a href="#">By Grossing</a>
+          </li>
         </ul>
-      </div>        
-
+      </div>
       <div id="vis"></div>
     </div>
-
+    <div id="sidr" style="display:none;">
+      <ul>
+        <li><a href="#">Genre Bubbles</a>
+        </li>
+        <li class="active"><a href="#">Oscar Trend</a>
+        </li>
+        <li><a href="#">Release Date Pattern</a>
+        </li>
+      </ul>
+    </div>
   </div>
   <!--! end of #container -->
 
-  
+
   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> -->
   <script>
   window.jQuery || document.write('<script src="js/libs/jquery-1.11.0.min.js"><\/script>')
@@ -64,6 +77,7 @@
   <script src="js/tooltip.js"></script>
   <script src="js/libs/bootstrap.min.js"></script>
   <script src="js/libs/d3.min.js"></script>
+  <script src="js/libs/jquery.sidr.min.js"></script>
   <script src="js/viz.js"></script>
 
   <script>
