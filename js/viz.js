@@ -177,7 +177,6 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
   }
 
   function move_towards_center(alpha) {
-    // vis.attr('height', '600');
     return function(d) {
       d.x = d.x + (center.x - d.x) * (damper + 0.02) * alpha;
       d.y = d.y + (center.y - d.y) * (damper + 0.02) * alpha;
@@ -185,7 +184,6 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
   }
 
   function display_by_genre() {
-    // vis.attr('height', '640');
     force.gravity(layout_gravity)
       .charge(charge)
       .friction(0.9)
