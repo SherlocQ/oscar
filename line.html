@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/jquery.sidr.light.css">
+  <link rel="stylesheet" href="css/c3.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- end CSS-->
 
@@ -28,23 +29,21 @@
 <body>
   <div id="container" class="container">
     <header>
-      <h1>Oscar Winners and Nominees Bubbles</h1>
+      <h1>Oscar Winners and Nominees Linechart</h1>
     </header>
     <div id="main" role="main">
       <button type="button" class="btn btn-default" style="outline:none;">
-        <a href="#sidr"><span id="sidebar_toggle" class="glyphicon glyphicon-align-justify"></span></a>
+        <a href="#sidr">
+          <span id="sidebar_toggle" class="glyphicon glyphicon-align-justify"></span>
+        </a>
       </button>
-      <div id="view_selection" class="btn-group">
-        <button type="button" class="btn btn-default active" id="all">All</button>
-        <button type="button" class="btn btn-default" id="genre">By Genre</button>
-      </div>
-      <div id="vis"></div>
+      <div id="chart"></div>
     </div>
     <div id="sidr" style="display:none;">
       <ul>
-        <li class="active"><a href="#">Genre Bubbles</a>
+        <li><a href="#">Genre Bubbles</a>
         </li>
-        <li><a href="#">Oscar Trend</a>
+        <li class="active"><a href="#">Oscar Trend</a>
         </li>
         <li><a href="#">Release Date Pattern</a>
         </li>
@@ -60,12 +59,12 @@
   </script>
 
   <script defer src="js/plugins.js"></script>
-  <script defer src="js/script.js"></script>
+  <script defer src="js/line.js"></script>
   <script src="js/tooltip.js"></script>
   <script src="js/libs/bootstrap.min.js"></script>
   <script src="js/libs/d3.min.js"></script>
   <script src="js/libs/jquery.sidr.min.js"></script>
-  <script src="js/viz.js"></script>
+  <script src="js/libs/c3.min.js"></script>
 
   <script>
   window._gaq = [

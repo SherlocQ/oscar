@@ -16,7 +16,7 @@
 body, input, textarea, select {
   font-family:"ProximaNova-Regular", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-#vis {
+#vis, #chart {
   border-size: border-box;
   margin: 0 auto;
   padding: 10px;
@@ -25,7 +25,7 @@ body, input, textarea, select {
   clear: both;
 }
 .genres {
-  font-size: 16px;
+  font-size: 18px;
   fill: #333;
 }
 .tooltip {
