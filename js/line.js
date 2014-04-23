@@ -28,25 +28,32 @@
   function initChart(data) {
     var ls = processData(data);
     var chart = c3.generate({
+      size: {
+        height: 500,
+      },    
       data: {
         x: 'year',
-        x_format : '%Y',
+        x_format: '%Y',
         columns: ls,
       },
       axis: {
         x: {
           type: 'timeseries',
           tick: {
+            culling: {
+              max: 10
+            },
             fit: true,
             format: '%Y'
-          }
+          },
+          label: 'Year'
+        },
+        y: {
+          label: 'Count'
         }
       },
       subchart: {
-        show: true
-      },
-      zoom: {
-        enabled: true
+        show: true,
       },
       tooltip: {
         format: {
@@ -66,9 +73,5 @@
     d3.json("data/average.json", function(data) {
       all_data = $.extend(true, {}, data);
       initChart(data);
-    });
-    $('#sidebar_toggle').sidr({
-      name: 'sidr-left',
-      source: '#sidr'
     });
   });

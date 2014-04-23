@@ -18,7 +18,8 @@
   <!-- CSS concatenated and minified via ant build script-->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/jquery.sidr.light.css">
+  <link rel="stylesheet" href="css/c3.css">
+  <link rel="stylesheet" href="css/chosen.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- end CSS-->
 
@@ -26,30 +27,45 @@
 </head>
 
 <body>
-  <div id="container" class="container">
-    <header>
-      <h1>Oscar Winners and Nominees Bubbles</h1>
-    </header>
-    <div id="main" role="main">
-      <button type="button" class="btn btn-default" style="outline:none;" id="sidebar_toggle">
-        <a href="#sidr"><span class="glyphicon glyphicon-align-justify"></span></a>
-      </button>
-      <div id="view_selection" class="btn-group">
-        <button type="button" class="btn btn-default active" id="all">All</button>
-        <button type="button" class="btn btn-default" id="genre">By Genre</button>
-      </div>
-      <div id="vis"></div>
+  <div id="bubble-container" class="container">
+    <h1>Bubble</h1>
+    <div id="view_selection" class="btn-group">
+      <button type="button" class="btn btn-default active" id="all">All</button>
+      <button type="button" class="btn btn-default" id="genre">By Genre</button>
     </div>
-    <div id="sidr" style="display:none;">
-      <ul>
-        <li class="active"><a href="">Genre Bubbles</a>
-        </li>
-        <li><a href="line.html">Oscar Trend</a>
-        </li>
-        <li><a href="">Release Date Pattern</a>
-        </li>
-      </ul>
+    <div id="bubble"></div>
+  </div>
+
+  <div id="sp-container" class="container">
+    <h1>Scatterplot</h1>
+    <div id="genre_selection" class="btn-group">
+      <button id="all_movies" type="button" class="btn btn-default btn_filter active">ALL</button>
+      <button id="winners_movies" type="button" class="btn btn_filter btn-default">Winners</button>
+      <button id="nominees_movies" type="button" class="btn btn_filter btn-default">Nominees</button>
     </div>
+    <select data-placeholder="Filter by Genre..." class="chzn-select" id="genre-select" multiple style="width:390px;" tabindex="4">
+      <option value=""></option>
+      <option value="Action">Action</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Animation">Animation</option>
+      <option value="Biography">Biography</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Crime">Crime</option>
+      <option value="Drama">Drama</option>
+      <option value="Others">Others</option>
+    </select>
+    <div id="scatterplot"></div>
+    <div id="sp-tooltip" class="hidden">
+      <div class="content"></div>
+      <div class="tri"></div>
+    </div>
+  </div>  
+  
+  <div id="line-container" class="container">
+    <h1>Linechart</h1>
+    <div id="chart"></div>
+  </div>
+
   </div>
   <!--! end of #container -->
 
@@ -60,12 +76,16 @@
   </script>
 
   <script defer src="js/plugins.js"></script>
-  <script defer src="js/script.js"></script>
   <script src="js/tooltip.js"></script>
   <script src="js/libs/bootstrap.min.js"></script>
   <script src="js/libs/d3.min.js"></script>
-  <script src="js/libs/jquery.sidr.min.js"></script>
-  <script src="js/viz.js"></script>
+  <script src="js/libs/chosen.jquery.min.js"></script>
+  <script src="js/libs/c3.min.js"></script>
+
+  <script src="js/bubble.js"></script>
+  <script src="js/line.js"></script>
+  <script src="js/scatterplot.js"></script>
+  <script src="js/script.js"></script>
 
   <script>
   window._gaq = [

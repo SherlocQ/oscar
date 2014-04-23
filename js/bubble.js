@@ -1,9 +1,14 @@
+d3.json("data/movie_data.json", function(data) {
+  custom_bubble_chart.init(data);
+  custom_bubble_chart.toggle_view('all');
+});
+
 var custom_bubble_chart = (function(d3, CustomTooltip) {
   "use strict";
 
   var width = 940,
     height = 600,
-    tooltip = CustomTooltip("tooltip", 240),
+    tooltip = CustomTooltip("bubble-tooltip", 240),
     layout_gravity = -0.01,
     damper = 0.1,
     nodes = [],
@@ -120,7 +125,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       return b.value - a.value;
     });
 
-    vis = d3.select("#vis").append("svg")
+    vis = d3.select("#bubble").append("svg")
       .attr("width", width)
       .attr("height", height)
       .attr("id", "svg_vis");

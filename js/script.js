@@ -1,8 +1,3 @@
-d3.json("data/movie_data.json", function(data) {
-  custom_bubble_chart.init(data);
-  custom_bubble_chart.toggle_view('all');
-});
-
 $(document).ready(function() {
   $('#view_selection button').click(function() {
     var view_type = $(this).attr('id');
@@ -12,16 +7,25 @@ $(document).ready(function() {
     return false;
   });
 
-  $('#measure_selection button').click(function() {
-    var measure_type = $(this).attr('id');
-    $('#measure_selection button').removeClass('active');
+  $('#genre_selection button').click(function() {
+    $('#genre_selection button').removeClass('active');
     $(this).toggleClass('active');
-    custom_bubble_chart.toggle_measure(measure_type);
     return false;
   });
 
-  $('#sidebar_toggle').sidr({
-    name: 'sidr-left',
-    source: '#sidr'
+  $(".chzn-select").chosen();
+  $("#genre-select").change(function() {
+    var genres = $(this).val();
+    var new_options = {
+      "genres": genres
+    };
+    update_options(new_options);
+  });
+  $('.btn_filter').click(function() {
+    var category = $(this).attr('id');
+    var new_options = {
+      "category": category
+    };
+    update_options(new_options);
   });
 });
