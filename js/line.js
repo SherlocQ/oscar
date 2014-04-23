@@ -5,11 +5,11 @@
       ls3 = [],
       ls4 = [],
       ls = [];
-    timeLs.push('x');
+    timeLs.push('year');
     ls1.push('rating');
-    ls2.push('budget(m)');
-    ls3.push('gross(m)');
-    ls4.push('vote(k)');
+    ls2.push('budget (m)');
+    ls3.push('gross (m)');
+    ls4.push('vote (k)');
     $.each(data, function(index, val) {
       timeLs.push(index);
       ls1.push(val.Average[0].toFixed(2));
@@ -29,7 +29,8 @@
     var ls = processData(data);
     var chart = c3.generate({
       data: {
-        x: 'x',
+        x: 'year',
+        x_format : '%Y',
         columns: ls,
       },
       axis: {
@@ -70,5 +71,4 @@
       name: 'sidr-left',
       source: '#sidr'
     });
-    console.log($('g.c3-brush').next());
   });
