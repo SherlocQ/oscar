@@ -253,13 +253,13 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "Others": width / 2
     };
     var genres_y = {
-      "Biography": 160,
-      "Comedy": 160,
-      "Adventure": 160,
-      "Drama": 460,
-      "Crime": 460,
-      "Action": 460,
-      "Animation": 580,
+      "Biography": 165,
+      "Comedy": 205,
+      "Adventure": 185,
+      "Drama": 470,
+      "Crime": 450,
+      "Action": 500,
+      "Animation": 600,
       "Others": 580
     };
     var genres_data = d3.keys(genres_x);
