@@ -1,4 +1,4 @@
- qfunction CustomTooltip(tooltipId, width) {
+ function CustomTooltip(tooltipId, width) {
    var tooltipId = tooltipId;
    $("body").append("<div class='tooltip' id='" + tooltipId + "'></div>");
 
