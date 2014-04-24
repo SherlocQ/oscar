@@ -55,13 +55,6 @@
       subchart: {
         show: true,
       },
-      tooltip: {
-        format: {
-          value: function(d) {
-            return d;
-          }
-        }
-      },
       color: {
         pattern: ["#abd9e9", "#f49779", "#fdae61", "#66c2a5"]
       }
