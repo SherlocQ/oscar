@@ -66,7 +66,7 @@ function initChart(data) {
       show: true,
     },
     color: {
-      pattern: ["#abd9e9", "#f49779", "#fdae61", "#66c2a5"]
+      pattern: ["#abd9e9", "#f49779", "#fdae61", "#66c2a5", "#F1BBBA", "#fee08b"]
     }
   });
   $($('.c3-axis-x')[1]).find('text').hide();
