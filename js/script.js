@@ -7,11 +7,17 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.genre_selection button').click(function() {
-    $('.genre_selection button').removeClass('active');
+  $('.sp_selection button').click(function() {
+    $('.sp_selection button').removeClass('active');
     $(this).toggleClass('active');
     return false;
   });
+
+  $('.line_selection button').click(function() {
+    $('.line_selection button').removeClass('active');
+    $(this).toggleClass('active');
+    return false;
+  });  
 
   $('#type_selection li').click(function() {
     $('#type_selection li').removeClass('active');

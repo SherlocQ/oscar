@@ -97,19 +97,16 @@ function initChart(data) {
 
 $(document).ready(function() {
   processData('all');
-  $('button#all').on('click', function(event) {
+  $('button#all_average').on('click', function(event) {
     event.preventDefault();
-    console.log('all');
     processData('all');    
   });
-  $('button#winner').on('click', function(event) {
+  $('button#winner_average').on('click', function(event) {
     event.preventDefault();
-    console.log('winner');
     processData('winner');
   });
-  $('button#nominee').on('click', function(event) {
+  $('button#nominee_average').on('click', function(event) {
     event.preventDefault();
-    console.log('nominee');
     processData('nominee');
   });
 });
