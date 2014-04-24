@@ -23,7 +23,7 @@ body, input, textarea, select {
   height: 600px;
 }
 #chart {
-  padding-top: 20px;
+  margin: 50px 0;
 }
 .genres {
   font-size:18px;
