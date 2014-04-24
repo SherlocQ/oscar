@@ -68,7 +68,6 @@
         //        data[index]['Genre'] = 'Others';
         // }
       }
-      console.log(new_data);
       return new_data;
     };
 
@@ -158,7 +157,6 @@
       // filter_year(root.options.year);
       filter_genres(root.options.genres);
       filter_category(root.options.category);
-      console.log(data);
       // filter_stories(root.options.stories);
       // sort_data(root.options.sort);
       // filter_number(root.options.top, root.options.bottom);
@@ -282,7 +280,6 @@
         "x": w + bBox.x,
         "y": h + bBox.y
       };
-      console.log(bBox);
       box.x = Math.round(x_scale(movie_data[data_axis['x']]) - (pr + 122) + r_scale(movie_data[data_axis['r']]));
       // box.y = Math.round(y_scale_reverse(movie_data[data_axis['y']])) - (r_scale(movie_data[data_axis['r']]) + pt + 20);
       box.y = 10 + 520 - y_scale_reverse(movie_data[data_axis['y']]) + r_scale(movie_data[data_axis['r']]);
@@ -298,7 +295,6 @@
       d3.select('#sp-tooltip').classed('hidden', false);
       d3.select('#sp-tooltip .content').html(msg);
       d3.select('#sp-tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('bottom', "" + box.y + "px");
-      console.log($('#sp-tooltip').attr('style'));
       selected_movie = d3.select(element);
       selected_movie.attr("opacity", 1.0);
       unselected_movies = movies.filter(function(d) {

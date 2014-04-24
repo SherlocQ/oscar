@@ -49,7 +49,7 @@ body, input, textarea, select {
 }
 .poster {
   width:100%;
-  padding:10px;
+  padding:5px;
   border:10px solid #fff;
   background-color:#eee
 }

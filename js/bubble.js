@@ -273,7 +273,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
   function show_details(data, i, element) {
     d3.select(element).attr("stroke", "black");
     d3.select(element).attr("stroke-width", "2");
-    var content = "<img class=\"poster\" src=" + data.poster + "></br>";
+    var content = "<img class=\"name poster\" src=" + data.poster + "></br>";
     content += "<span class=\"name\">Title:</span><span class=\"value\"> " + data.name + "</span><br/>";
     content += "<span class=\"name\">Year:</span><span class=\"value\"> " + data.year + "</span></br>";
     content += "<span class=\"name\">Gross:</span><span class=\"value\"> $" + data.value.formatMoney(2) + "</span><br/>";
