@@ -91,7 +91,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
   };
 
   var fill_color = d3.scale.ordinal()
-    .domain(["Biography","Comedy","Adventure","Drama","Crime","Action","Animation","Horror", "Music", "Western", "Family", "Mystery", "Fantasy", "Romance", "Film-Noir"])
+    .domain(["Biography", "Comedy", "Adventure", "Drama", "Crime", "Action", "Animation", "Horror", "Music", "Western", "Family", "Mystery", "Fantasy", "Romance", "Film-Noir"])
     .range(["#F1BBBA", "#f49779", "#fee08b", "#abdda4", "#fdae61", "#abd9e9", "#e6f598", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5"]);
 
   function custom_chart(data) {
@@ -164,6 +164,21 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     circles.transition().duration(2000).attr("r", function(d) {
       return d.radius;
     });
+
+    var legend_bubble = d3.select('#legend-bubble')
+      .append('ul')
+      .attr('class', 'list-inline');
+
+    var keys = legend_bubble.selectAll('li.key')
+      .data(fill_color.range().slice(0, 8));
+
+    var genre_ls = ["Biography", "Comedy", "Adventure", "Drama", "Crime", "Action", "Animation", "Others"];
+    keys.enter().append('li')
+      .attr('class', 'key')
+      .style('border-top-color', String)
+      .text(function(d, i) {
+        return genre_ls[i];
+      });
 
   }
 

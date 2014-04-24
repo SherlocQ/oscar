@@ -22,6 +22,9 @@ body, input, textarea, select {
 #line-container {
   height: 600px;
 }
+#chart {
+  padding-top: 20px;
+}
 .genres {
   font-size:18px;
   fill:#333
@@ -52,6 +55,22 @@ body, input, textarea, select {
   padding:5px;
   border:10px solid #fff;
   background-color:#eee
+}
+#legend-bubble {
+  position: absolute;
+  top: 250px;
+  right: 250px;
+  width: 90px;
+}
+li.key {
+  display: block;
+  margin: 0 auto;
+  border-top-width: 25px;
+  border-top-style: solid;
+  border-radius: 100%;
+  font-size: .75em;
+  width: 50px;
+  text-align: center;
 }
 path.line {
   fill: none;
