@@ -140,9 +140,11 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .attr("fill", function(d) {
         return fill_color(d.group);
       })
-      .attr("stroke-width", 1)
+      .attr("stroke-width", function(d) {
+        return d.winning == 'YES' ? 2 : 1;
+      })
       .attr("stroke", function(d) {
-        return d3.rgb(fill_color(d.group)).darker();
+        return d.winning == 'YES' ? '#FFFF81' : d3.rgb(fill_color(d.group)).darker();
       })
       .attr("id", function(d) {
         return "bubble_" + d.id;
@@ -150,12 +152,12 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .style("fill-opacity", 0.8)
       .on("mouseover", function(d, i) {
         show_details(d, i, this);
-        d3.select(this)
-          .attr({
-            "stroke": function(d) {
-              return d.winning == 'YES' ? '#FFFF81' : 'black'
-            }
-          });
+        // d3.select(this)
+        //   .attr({
+        //     "stroke": function(d) {
+        //       return d.winning == 'YES' ? '#FFFF81' : 'black'
+        //     }
+        //   });
       })
       .on("mouseout", function(d, i) {
         hide_details(d, i, this);
