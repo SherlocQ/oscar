@@ -138,12 +138,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     var max_amount = d3.max(data, function(d) {
       return parseInt(d.gross, 10);
     });
-    var _radius;
-    if(type == 'scale') {
-      radius_scale = d3.scale.pow().exponent(0.7).domain([0, max_amount]).range([2, 80]);
-    } else {
-      radius_scale = d3.scale.pow().exponent(0.7).domain([0, max_amount]).range([10, 10]);      
-    }
+    radius_scale = d3.scale.pow().exponent(0.7).domain([0, max_amount]).range([2, 80]);
 
     data.forEach(function(d) {
       var node = {
@@ -314,14 +309,24 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "Drama": 470,
       "Crime": 450,
       "Action": 500,
-      "Animation": 600,
+      "Animation": 595,
       "Others": 580
     };
+    var genres_count = {
+      "Biography": 72,
+      "Comedy": 86,
+      "Adventure": 43,
+      "Drama": 222,
+      "Crime": 43,
+      "Action": 26,
+      "Animation": 3,
+      "Others": 9
+    };    
     var genres_data = d3.keys(genres_x);
     var genres = vis.selectAll(".genres")
       .data(genres_data);
 
-    genres.enter().append("text")
+    var genres_text = genres.enter().append("text")
       .attr("class", "genres")
       .attr("x", function(d) {
         return genres_x[d];
@@ -329,10 +334,20 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .attr("y", function(d) {
         return genres_y[d];
       })
-      .attr("text-anchor", "middle")
+      .attr("text-anchor", "middle");
+
+    var tspan1 = genres_text
+      .append('tspan')
       .text(function(d) {
         return d;
-      });
+      })
+    var tspan2 = genres_text
+      .append('tspan')
+      .text(function(d) {
+        return '(' + genres_count[d] + ')';
+      })
+      .attr('dx', '.5em')
+      .style('fill', '#aaa');
   }
 
   function hide_genres() {
@@ -384,15 +399,26 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "1960s": 260,
       "1970s": 275,
       "1980s": 270,
-      "1990s": 600,
-      "2000s": 600,
-      "2010s": 600,                  
+      "1990s": 595,
+      "2000s": 595,
+      "2010s": 595,                  
     };
+    var genres_count = {
+      "1930s": 90,
+      "1940s": 75,
+      "1950s": 50,
+      "1960s": 50,
+      "1970s": 50,
+      "1980s": 50,
+      "1990s": 50,
+      "2000s": 50,
+      "2010s": 47
+    };    
     var years_data = d3.keys(years_x);
     var years = vis.selectAll(".years")
       .data(years_data);
 
-    years.enter().append("text")
+    var years_text = years.enter().append("text")
       .attr("class", "years")
       .attr("x", function(d) {
         return years_x[d];
@@ -400,10 +426,20 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .attr("y", function(d) {
         return years_y[d];
       })
-      .attr("text-anchor", "middle")
+      .attr("text-anchor", "middle");
+
+    var tspan1 = years_text
+      .append('tspan')
       .text(function(d) {
         return d;
-      });
+      })
+    var tspan2 = years_text
+      .append('tspan')
+      .text(function(d) {
+        return '(' + genres_count[d] + ')';
+      })
+      .attr('dx', '.5em')
+      .style('fill', '#aaa');
   }
 
   function hide_years() {
@@ -447,7 +483,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
 
   var my_mod = {};
   my_mod.init = function(_data) {
-    custom_chart(_data, 'scale');
+    custom_chart(_data);
     start();
   };
 
