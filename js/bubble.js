@@ -414,8 +414,8 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     var content = "<img class=\"name poster\" src=" + data.poster + "></br>";
     content += "<span class=\"name\">Title:</span><span class=\"value\"> " + data.name + "</span><br/>";
     content += "<span class=\"name\">Year:</span><span class=\"value\"> " + data.year + "</span></br>";
-    content += "<span class=\"name\">Gross:</span><span class=\"value\"> $" + data.value.formatMoney(2) + "</span><br/>";
-    content += "<span class=\"name\">Rating:</span><span class=\"value\"> " + data.rating + "</span><br/>";
+    content += "<span class=\"name\">Gross:</span><span class=\"value\"> $" + data.value.formatMoney(2) + "M" + "</span><br/>";
+    content += "<span class=\"name\">Rating:</span><span class=\"value\"> " + data.rating + "/10" + "</span><br/>";
     content += "<span class=\"name\">Genre:</span><span class=\"value\"> " + data.group + "</span></br>"
     content += "<span class=\"name\">Winner:</span><span class=\"value\"> " + data.winning + "</span></br>";
     tooltip.showTooltip(content, d3.event);
