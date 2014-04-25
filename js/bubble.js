@@ -133,12 +133,17 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     .domain(["Biography", "Comedy", "Adventure", "Drama", "Crime", "Action", "Animation", "Horror", "Music", "Western", "Family", "Mystery", "Fantasy", "Romance", "Film-Noir"])
     .range(["#F1BBBA", "#f49779", "#fee08b", "#abdda4", "#fdae61", "#abd9e9", "#e6f598", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5"]);
 
-  function custom_chart(data) {
+  function custom_chart(data, type) {
     data = data.slice(1, 504);
     var max_amount = d3.max(data, function(d) {
       return parseInt(d.gross, 10);
     });
-    radius_scale = d3.scale.pow().exponent(0.7).domain([0, max_amount]).range([2, 80]);
+    var _radius;
+    if(type == 'scale') {
+      radius_scale = d3.scale.pow().exponent(0.7).domain([0, max_amount]).range([2, 80]);
+    } else {
+      radius_scale = d3.scale.pow().exponent(0.7).domain([0, max_amount]).range([10, 10]);      
+    }
 
     data.forEach(function(d) {
       var node = {
@@ -228,7 +233,6 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         $('#legend-bubble').css('top', '890px');
       }
     });
-
   }
 
   function charge(d) {
@@ -329,7 +333,6 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .text(function(d) {
         return d;
       });
-
   }
 
   function hide_genres() {
@@ -401,7 +404,6 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .text(function(d) {
         return d;
       });
-
   }
 
   function hide_years() {
@@ -445,7 +447,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
 
   var my_mod = {};
   my_mod.init = function(_data) {
-    custom_chart(_data);
+    custom_chart(_data, 'scale');
     start();
   };
 

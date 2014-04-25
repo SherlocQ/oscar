@@ -7,6 +7,14 @@ $(document).ready(function() {
     return false;
   });
 
+  $('#radius_selection button').click(function() {
+    var radius_type = $(this).attr('id');
+    $('#radius_selection button').removeClass('active');
+    $(this).toggleClass('active');
+    custom_bubble_chart.toggle_radius(radius_type);
+    return false;
+  });  
+
   $('.sp_selection button').click(function() {
     $('.sp_selection button').removeClass('active');
     $(this).toggleClass('active');
