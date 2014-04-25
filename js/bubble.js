@@ -171,7 +171,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
 
     var keys = legend_bubble.selectAll('li.key')
       .data(fill_color.range().slice(0, 8));
-
+	  
     var genre_ls = ["Biography", "Comedy", "Adventure", "Drama", "Crime", "Action", "Animation", "Others"];
     keys.enter().append('li')
       .attr('class', 'key')
@@ -179,6 +179,8 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .text(function(d, i) {
         return genre_ls[i];
       });
+	  
+	$('#legend-bubble ul').prepend('<li class="key-radius"></li><div class="radius"><span>Gross</span></div>');
 
   }
 
