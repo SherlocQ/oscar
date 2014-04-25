@@ -336,14 +336,14 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "Others": width / 2
     };
     var genres_y = {
-      "Biography": 165,
-      "Comedy": 205,
-      "Adventure": 185,
-      "Drama": 470,
+      "Biography": 170,
+      "Comedy": 20,
+      "Adventure": 20,
+      "Drama": 495,
       "Crime": 450,
       "Action": 500,
       "Animation": 595,
-      "Others": 580
+      "Others": 565
     };
     var genres_count = {
       "Biography": 72,
@@ -426,15 +426,15 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "2010s": width - 240,
     };
     var years_y = {
-      "1930s": 120,
-      "1940s": 110,
-      "1950s": 110,
-      "1960s": 260,
-      "1970s": 275,
-      "1980s": 270,
-      "1990s": 595,
-      "2000s": 595,
-      "2010s": 595,
+      "1930s": 25,
+      "1940s": 25,
+      "1950s": 25,
+      "1960s": 255,
+      "1970s": 255,
+      "1980s": 255,
+      "1990s": 590,
+      "2000s": 590,
+      "2010s": 590,
     };
     var genres_count = {
       "1930s": 90,
