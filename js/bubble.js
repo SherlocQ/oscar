@@ -90,6 +90,45 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     },
   };
 
+  var year_centers = {
+    "1930s": {
+      x: width / 3,
+      y: height / 3
+    },
+    "1940s": {
+      x: width / 2,
+      y: height / 3
+    },
+    "1950s": {
+      x: 2 * width / 3,
+      y: height / 3
+    },
+    "1960s": {
+      x: width / 3,
+      y: height / 2
+    },
+    "1970s": {
+      x: width / 2,
+      y: height / 2
+    },
+    "1980s": {
+      x: 2 * width / 3,
+      y: height / 2
+    },
+    "1990s": {
+      x: width / 3,
+      y: 2 * height / 3
+    },
+    "2000s": {
+      x: width / 2,
+      y: 2 * height / 3 - 15
+    },
+    "2010s": {
+      x: 2 * width / 3,
+      y: 2 * height / 3 - 10
+    }           
+  };
+
   var fill_color = d3.scale.ordinal()
     .domain(["Biography", "Comedy", "Adventure", "Drama", "Crime", "Action", "Animation", "Horror", "Music", "Western", "Family", "Mystery", "Fantasy", "Romance", "Film-Noir"])
     .range(["#F1BBBA", "#f49779", "#fee08b", "#abdda4", "#fdae61", "#abd9e9", "#e6f598", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5"]);
@@ -112,6 +151,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         gross: d.gross,
         profit: d.gross - d.budget,
         group: d.Genre.split(",")[0],
+        years: d.Years,
         year: d.Year,
         poster: d.Img,
         winning: d.Oscar_winner,
@@ -152,12 +192,6 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .style("fill-opacity", 0.8)
       .on("mouseover", function(d, i) {
         show_details(d, i, this);
-        // d3.select(this)
-        //   .attr({
-        //     "stroke": function(d) {
-        //       return d.winning == 'YES' ? '#FFFF81' : 'black'
-        //     }
-        //   });
       })
       .on("mouseout", function(d, i) {
         hide_details(d, i, this);
@@ -173,7 +207,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
 
     var keys = legend_bubble.selectAll('li.key')
       .data(fill_color.range().slice(0, 8));
-	  
+
     var genre_ls = ["Biography", "Comedy", "Adventure", "Drama", "Crime", "Action", "Animation", "Others"];
     keys.enter().append('li')
       .attr('class', 'key')
@@ -181,19 +215,19 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .text(function(d, i) {
         return genre_ls[i];
       });
-	  
-	$('#legend-bubble ul').prepend('<li class="key-winner"></li><div class="winner"><span>Winner</span></div>');  
-	$('#legend-bubble ul').prepend('<li class="key-radius"></li><div class="radius"><span>Gross</span></div>');
-	
-	$(window).scroll(function(){
-		if(document.body.scrollTop <= 670){
-			$('#legend-bubble').css('position','fixed');
-			$('#legend-bubble').css('top','150px');
-		}else{
-			$('#legend-bubble').css('position','absolute');
-			$('#legend-bubble').css('top','820px');
-		}
-	});
+
+    $('#legend-bubble ul').prepend('<li class="key-winner"></li><div class="winner"><span>Winner</span></div>');
+    $('#legend-bubble ul').prepend('<li class="key-radius"></li><div class="radius"><span>Gross</span></div>');
+
+    $(window).scroll(function() {
+      if (document.body.scrollTop <= 670) {
+        $('#legend-bubble').css('position', 'fixed');
+        $('#legend-bubble').css('top', '150px');
+      } else {
+        $('#legend-bubble').css('position', 'absolute');
+        $('#legend-bubble').css('top', '820px');
+      }
+    });
 
   }
 
@@ -222,6 +256,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       });
     force.start();
     hide_genres();
+    hide_years();
   }
 
   function move_towards_center(alpha) {
@@ -245,6 +280,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
           });
       });
     force.start();
+    hide_years();
     display_genres();
   }
 
@@ -300,6 +336,78 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     var genres = vis.selectAll(".genres").remove();
   }
 
+  function display_by_year() {
+    force.gravity(layout_gravity)
+      .charge(charge)
+      .friction(0.9)
+      .on("tick", function(e) {
+        circles.each(move_towards_year(e.alpha))
+          .attr("cx", function(d) {
+            return d.x;
+          })
+          .attr("cy", function(d) {
+            return d.y;
+          });
+      });
+    force.start();
+    hide_genres();
+    display_years();
+  }
+
+  function move_towards_year(alpha) {
+    return function(d) {
+      var target = year_centers[d.years];
+      d.x = d.x + (target.x - d.x) * (damper + 0.02) * alpha * 1.1;
+      d.y = d.y + (target.y - d.y) * (damper + 0.02) * alpha * 1.1;
+    };
+  }
+
+  function display_years() {
+    var years_x = {
+      "1930s": 240,
+      "1940s": width / 2,
+      "1950s": width - 240,
+      "1960s": 240,
+      "1970s": width / 2,
+      "1980s": width - 240,
+      "1990s": 240,
+      "2000s": width / 2,
+      "2010s": width - 240,
+    };
+    var years_y = {
+      "1930s": 120,
+      "1940s": 110,
+      "1950s": 110,
+      "1960s": 260,
+      "1970s": 275,
+      "1980s": 270,
+      "1990s": 600,
+      "2000s": 600,
+      "2010s": 600,                  
+    };
+    var years_data = d3.keys(years_x);
+    var years = vis.selectAll(".years")
+      .data(years_data);
+
+    years.enter().append("text")
+      .attr("class", "years")
+      .attr("x", function(d) {
+        return years_x[d];
+      })
+      .attr("y", function(d) {
+        return years_y[d];
+      })
+      .attr("text-anchor", "middle")
+      .text(function(d) {
+        return d;
+      });
+
+  }
+
+  function hide_years() {
+    var years = vis.selectAll(".years").remove();
+  }
+
   function show_details(data, i, element) {
     d3.select(element).attr("stroke", "black");
     d3.select(element).attr("stroke-width", "2");
@@ -343,9 +451,12 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
 
   my_mod.display_all = display_group_all;
   my_mod.display_genre = display_by_genre;
+  my_mod.display_year = display_by_year;
   my_mod.toggle_view = function(view_type) {
     if (view_type == 'genre') {
       display_by_genre();
+    } else if (view_type == 'years') {
+      display_by_year();
     } else {
       display_group_all();
     }

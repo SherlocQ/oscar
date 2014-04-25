@@ -25,7 +25,7 @@ body, input, textarea, select {
 #chart {
   margin: 50px 0;
 }
-.genres {
+.genres, .years {
   font-size:18px;
   fill:#333
 }
