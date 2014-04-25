@@ -51,7 +51,7 @@ function initChart(data) {
         type: 'timeseries',
         tick: {
           culling: {
-            max: 10
+            max: 20
           },
           fit: true,
           format: '%Y'
@@ -72,7 +72,7 @@ function initChart(data) {
   $($('.c3-axis-x')[1]).find('text').hide();
   var text = $($('.c3-axis-x')[1]).find('text');
   for (var i = 0, len = text.length - 1; i < len; i++) {
-    if (i % 9 == 0) {
+    if (i % 5 == 0) {
       $(text[i]).show();
     }
   };

@@ -113,7 +113,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         profit: d.gross - d.budget,
         group: d.Genre.split(",")[0],
         year: d.Year,
-        poster: d.Poster,
+        poster: d.Img,
         winning: d.Oscar_winner,
         x: Math.random() * 900,
         y: Math.random() * 800
