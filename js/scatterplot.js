@@ -172,8 +172,18 @@
       }).on("mouseout", hide_details).append("circle").attr("opacity", 0.8).attr("fill", function(d) {
         return color(d["Genre"]);
       }).attr("stroke", function(d) {
-        return d3.rgb(color(d["Genre"])).darker();
-      }).attr("stroke-width", 1).attr("r", function(d) {
+		  if(d['Oscar_winner'] == 'NO'){
+		  	return d3.rgb(color(d["Genre"])).darker();
+		  }else{
+			return '#ffff81';
+		  }
+      }).attr("stroke-width", function(d){
+		  if(d['Oscar_winner'] == 'NO'){
+		  	return 1;
+		  }else{
+			return 2;
+		  }
+      }).attr("r", function(d) {
         return r_scale(parseFloat(d[data_axis['r']]));
       });
       movies.transition().duration(1000).attr("transform", function(d) {
@@ -311,8 +321,20 @@
       var movies;
       d3.select('#sp-tooltip').classed('hidden', true);
       movies = body.selectAll(".movie").selectAll("circle").attr("opacity", 0.8);
-	  movies.attr('stroke-width', 1);
-	  movies.attr('stroke', function(d){ return d3.rgb(color(d["Genre"])).darker();})
+	  movies.attr('stroke-width', function(d){
+		  if(d['Oscar_winner'] == 'NO'){
+		  	return 1;
+		  }else{
+			return 2;
+		  }
+	  });
+	  movies.attr('stroke', function(d) {
+		  if(d['Oscar_winner'] == 'NO'){
+		  	return d3.rgb(color(d["Genre"])).darker();
+		  }else{
+			return '#ffff81';
+		  }
+      });
       return body.select("#crosshairs").remove();
     };
     d3.json("data/movie_data.json", render_vis);

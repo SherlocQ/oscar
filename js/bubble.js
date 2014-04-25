@@ -182,12 +182,13 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         return genre_ls[i];
       });
 	  
+	$('#legend-bubble ul').prepend('<li class="key-winner"></li><div class="winner"><span>Winner</span></div>');  
 	$('#legend-bubble ul').prepend('<li class="key-radius"></li><div class="radius"><span>Gross</span></div>');
 	
 	$(window).scroll(function(){
-		if(document.body.scrollTop <= 620){
+		if(document.body.scrollTop <= 670){
 			$('#legend-bubble').css('position','fixed');
-			$('#legend-bubble').css('top','200px');
+			$('#legend-bubble').css('top','150px');
 		}else{
 			$('#legend-bubble').css('position','absolute');
 			$('#legend-bubble').css('top','820px');
