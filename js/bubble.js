@@ -222,10 +222,10 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     $(window).scroll(function() {
       if (document.body.scrollTop <= 670) {
         $('#legend-bubble').css('position', 'fixed');
-        $('#legend-bubble').css('top', '150px');
+        $('#legend-bubble').css('top', '220px');
       } else {
         $('#legend-bubble').css('position', 'absolute');
-        $('#legend-bubble').css('top', '820px');
+        $('#legend-bubble').css('top', '890px');
       }
     });
 
