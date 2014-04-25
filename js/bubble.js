@@ -380,7 +380,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         return '(' + genres_count[d] + ')';
       })
       .attr('dx', '.5em')
-      .style('fill', '#aaa');
+      .style('fill', '#333');
   }
 
   function hide_genres() {
@@ -472,7 +472,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         return '(' + genres_count[d] + ')';
       })
       .attr('dx', '.5em')
-      .style('fill', '#aaa');
+      .style('fill', '#333');
   }
 
   function hide_years() {
