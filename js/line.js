@@ -7,7 +7,7 @@ function processData(_path) {
     ls3 = [],
     ls4 = [],
     ls5 = [],
-    ls6 = [];
+    // ls6 = [];
     ls = [];     
     timeLs.push('year');
     ls1.push('rating');
@@ -15,7 +15,7 @@ function processData(_path) {
     ls3.push('gross (m)');
     ls4.push('vote (k)');
     ls5.push('profit (m)');
-    ls6.push('profit percentage (%)');
+    // ls6.push('profit percentage (%)');
     $.each(data, function(index, val) {
       timeLs.push(index);
       ls1.push(parseFloat(val.Average[0]).toFixed(2));
@@ -23,7 +23,7 @@ function processData(_path) {
       ls3.push(parseFloat(val.Average[2]).toFixed(2));
       ls4.push((parseFloat(val.Average[3] / 1000)).toFixed(2));
       ls5.push(parseFloat(val.Average[4]).toFixed(2));
-      ls6.push(parseFloat(val.Average[5]).toFixed(2));
+      // ls6.push(parseFloat(val.Average[5]).toFixed(2));
     });
     ls.push(timeLs);
     ls.push(ls1);
@@ -31,7 +31,7 @@ function processData(_path) {
     ls.push(ls3);
     ls.push(ls4);
     ls.push(ls5);
-    ls.push(ls6);    
+    // ls.push(ls6);
     initChart(ls);
   });
 }
