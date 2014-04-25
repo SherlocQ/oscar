@@ -71,7 +71,7 @@ function initChart(data) {
   });
   $($('.c3-axis-x')[1]).find('text').hide();
   var text = $($('.c3-axis-x')[1]).find('text');
-  for (var i = 0, len = text.length - 1; i < len; i++) {
+  for (var i = 0, len = text.length - 1; i <= len; i++) {
     if (i % 5 == 0) {
       $(text[i]).show();
     }
