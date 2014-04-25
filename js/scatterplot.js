@@ -169,10 +169,10 @@
       });
       movies.enter().append("g").attr("class", "movie").on("mouseover", function(d, i) {
         return show_details(d, i, this);
-      }).on("mouseout", hide_details).append("circle").attr("opacity", 0.75).attr("fill", function(d) {
+      }).on("mouseout", hide_details).append("circle").attr("opacity", 0.8).attr("fill", function(d) {
         return color(d["Genre"]);
       }).attr("stroke", function(d) {
-        return d3.hsl(color(d["Genre"])).darker();
+        return d3.rgb(color(d["Genre"])).darker();
       }).attr("stroke-width", 1).attr("r", function(d) {
         return r_scale(parseFloat(d[data_axis['r']]));
       });
@@ -287,16 +287,19 @@
       msg = '<p class="title">' + movie_data["Title"] + '</p>';
       msg += '<table>';
       msg += '<tr><td>Genre:</td><td>' + movie_data["Genre"] + '</td></tr>';
+	  msg += '<tr><td>Budget:</td><td>' + movie_data["budget"] + ' mil</td></tr>';
       msg += '<tr><td>Rating:</td><td>' + movie_data["imdbRating"] + '</td></tr>';
+	  msg += '<tr><td>Gross:</td><td>' + movie_data["gross"] + ' mil' + '</td></tr>';
       msg += '<tr><td>Votes:</td><td>' + movie_data["imdbVotes"] + '</td></tr>';
-      msg += '<tr><td>Budget:</td><td>' + movie_data["budget"] + ' mil</td></tr>';
-      msg += '<tr><td>Gross:</td><td>' + movie_data["gross"] + ' mil' + '</td></tr>';
+      
       msg += '</table>';
       d3.select('#sp-tooltip').classed('hidden', false);
       d3.select('#sp-tooltip .content').html(msg);
       d3.select('#sp-tooltip').style('left', "" + ((box.x + (tooltipWidth / 2)) - box.width / 2) + "px").style('bottom', "" + box.y + "px");
       selected_movie = d3.select(element);
       selected_movie.attr("opacity", 1.0);
+	  selected_movie.select('circle').attr("stroke", 'black');
+	  selected_movie.select('circle').attr("stroke-width", 2.0);
       unselected_movies = movies.filter(function(d) {
         return d.imdbID !== movie_data.imdbID;
       }).selectAll("circle").attr("opacity", 0.25);
@@ -307,7 +310,9 @@
     hide_details = function(movie_data) {
       var movies;
       d3.select('#sp-tooltip').classed('hidden', true);
-      movies = body.selectAll(".movie").selectAll("circle").attr("opacity", 0.75);
+      movies = body.selectAll(".movie").selectAll("circle").attr("opacity", 0.8);
+	  movies.attr('stroke-width', 1);
+	  movies.attr('stroke', function(d){ return d3.rgb(color(d["Genre"])).darker();})
       return body.select("#crosshairs").remove();
     };
     d3.json("data/movie_data.json", render_vis);

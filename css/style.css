@@ -98,16 +98,18 @@ path.area {
 #sp-tooltip {
   position:absolute;
   width:220px;
-  background:url(../img/black80.png);
+  background-color:rgba(255,255,255,0.75);
+/*  background:url(../img/black80.png);*/
   z-index:1338;
   padding:7px;
   -moz-border-radius:5px;
   border-radius:5px;
-  color:#fff;
-  -moz-box-shadow:1px 1px 1px #666;
+  color:black;
+/*  -moz-box-shadow:1px 1px 1px #666;
   -webkit-box-shadow:1px 1px 1px #666;
-  box-shadow:1px 1px 1px #666;
-  pointer-events:none
+  box-shadow:1px 1px 1px #666;*/
+  pointer-events:none;
+  border:2px solid #333;
 }
 #sp-tooltip.hidden {
   display:none
@@ -129,18 +131,18 @@ path.area {
 #sp-tooltip .detail {
   font-size:12px;
   line-height:14px;
-  color:#fff
+  color:black
 }
 #sp-tooltip table {
   width:100%;
   font-size:12px;
   line-height:14px;
-  color:#fff;
+  color:black;
   margin:0
 }
 #sp-tooltip th, #sp-tooltip td {
   text-align:left;
-  border-top:1px solid #666;
+/*  border-top:1px solid #666;*/
   padding:2px 0
 }
 #sp-tooltip table tr:first-child th {
