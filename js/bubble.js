@@ -302,10 +302,13 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
   }
 
   function hide_details(data, i, element) {
-    d3.select(element).attr("stroke", function(d) {
-      return d3.rgb(fill_color(d.group)).darker();
-    });
-    d3.select(element).attr("stroke-width", "1");
+    d3.select(element)
+      .attr("stroke-width", function(d) {
+        return d.winning == 'YES' ? 2 : 1;
+      })
+      .attr("stroke", function(d) {
+        return d.winning == 'YES' ? '#FFFF81' : d3.rgb(fill_color(d.group)).darker();
+      })
     tooltip.hideTooltip();
   }
 
