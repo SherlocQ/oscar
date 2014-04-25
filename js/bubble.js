@@ -183,6 +183,16 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       });
 	  
 	$('#legend-bubble ul').prepend('<li class="key-radius"></li><div class="radius"><span>Gross</span></div>');
+	
+	$(window).scroll(function(){
+		if(document.body.scrollTop <= 620){
+			$('#legend-bubble').css('position','fixed');
+			$('#legend-bubble').css('top','200px');
+		}else{
+			$('#legend-bubble').css('position','absolute');
+			$('#legend-bubble').css('top','820px');
+		}
+	});
 
   }
 

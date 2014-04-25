@@ -57,9 +57,9 @@ body, input, textarea, select {
   background-color:#eee
 }
 #legend-bubble {
-  position: absolute;
+  position: fixed;
   top: 200px;
-  right: 200px;
+  right: 3%;
   width: 90px;
 }
 li.key {
