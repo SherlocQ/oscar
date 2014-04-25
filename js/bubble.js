@@ -126,12 +126,14 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     "2010s": {
       x: 2 * width / 3,
       y: 2 * height / 3 - 10
-    }           
+    }
   };
 
   var fill_color = d3.scale.ordinal()
     .domain(["Biography", "Comedy", "Adventure", "Drama", "Crime", "Action", "Animation", "Horror", "Music", "Western", "Family", "Mystery", "Fantasy", "Romance", "Film-Noir"])
     .range(["#F1BBBA", "#f49779", "#fee08b", "#abdda4", "#fdae61", "#abd9e9", "#e6f598", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5", "#66c2a5"]);
+
+  var radius_option = 0;
 
   function custom_chart(data, type) {
     data = data.slice(1, 504);
@@ -170,36 +172,39 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       .attr("height", height)
       .attr("id", "svg_vis");
 
-    circles = vis.selectAll("circle")
-      .data(nodes, function(d) {
-        return d.id;
-      });
+    function draw_circle() {
+      circles = vis.selectAll("circle")
+        .data(nodes, function(d) {
+          return d.id;
+        });
 
-    circles.enter().append("circle")
-      .attr("r", 0)
-      .attr("fill", function(d) {
-        return fill_color(d.group);
-      })
-      .attr("stroke-width", function(d) {
-        return d.winning == 'YES' ? 2 : 1;
-      })
-      .attr("stroke", function(d) {
-        return d.winning == 'YES' ? '#FFFF81' : d3.rgb(fill_color(d.group)).darker();
-      })
-      .attr("id", function(d) {
-        return "bubble_" + d.id;
-      })
-      .style("fill-opacity", 0.8)
-      .on("mouseover", function(d, i) {
-        show_details(d, i, this);
-      })
-      .on("mouseout", function(d, i) {
-        hide_details(d, i, this);
-      });
+      circles.enter().append("circle")
+        .attr("r", 0)
+        .attr("fill", function(d) {
+          return fill_color(d.group);
+        })
+        .attr("stroke-width", function(d) {
+          return d.winning == 'YES' ? 2 : 1;
+        })
+        .attr("stroke", function(d) {
+          return d.winning == 'YES' ? '#FFFF81' : d3.rgb(fill_color(d.group)).darker();
+        })
+        .attr("id", function(d) {
+          return "bubble_" + d.id;
+        })
+        .style("fill-opacity", 0.8)
+        .on("mouseover", function(d, i) {
+          show_details(d, i, this);
+        })
+        .on("mouseout", function(d, i) {
+          hide_details(d, i, this);
+        });
 
-    circles.transition().duration(2000).attr("r", function(d) {
-      return d.radius;
-    });
+      circles.transition().duration(2000).attr("r", function(d) {
+        return radius_option == 1 ? 10 : d.radius;
+      });
+    }
+    draw_circle();
 
     var legend_bubble = d3.select('#legend-bubble')
       .append('ul')
@@ -228,10 +233,38 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
         $('#legend-bubble').css('top', '890px');
       }
     });
+
+  $('#scale').click(function() {
+    radius_option = 0;
+    draw_circle();
+    var viewtype = $("#view_selection button.active").attr('id')
+    console.log(viewtype)
+    if (viewtype == 'genre') {
+      display_by_genre();
+    } else if (viewtype == 'years') {
+      display_by_year();
+    } else {
+      display_group_all();
+    }
+
+  });
+  $('#count').click(function() {
+    radius_option = 1;
+    draw_circle();
+    var viewtype = $("#view_selection button.active").attr('id')
+    console.log(viewtype)
+    if (viewtype == 'genre') {
+      display_by_genre();
+    } else if (viewtype == 'years') {
+      display_by_year();
+    } else {
+      display_group_all();
+    }
+  });    
   }
 
   function charge(d) {
-    return -Math.pow(d.radius, 2.0) / 8;
+    return radius_option == 1 ? -Math.pow(10, 2.0) / 8 : -Math.pow(d.radius, 2.0) / 8;
   }
 
   function start() {
@@ -321,7 +354,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "Action": 26,
       "Animation": 3,
       "Others": 9
-    };    
+    };
     var genres_data = d3.keys(genres_x);
     var genres = vis.selectAll(".genres")
       .data(genres_data);
@@ -401,7 +434,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "1980s": 270,
       "1990s": 595,
       "2000s": 595,
-      "2010s": 595,                  
+      "2010s": 595,
     };
     var genres_count = {
       "1930s": 90,
@@ -413,7 +446,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       "1990s": 50,
       "2000s": 50,
       "2010s": 47
-    };    
+    };
     var years_data = d3.keys(years_x);
     var years = vis.selectAll(".years")
       .data(years_data);
